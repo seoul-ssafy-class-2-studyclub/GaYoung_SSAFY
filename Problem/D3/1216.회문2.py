@@ -1,29 +1,27 @@
-for t in range(1):
+def is_p(word):
+    for i in range(len(word) // 2):
+        if word[i] != word[-1-i]:
+            return False
+    return len(word)
+
+def longest_p(board):
+    result = []
+    for row in board:
+        for t_v in range(2, len(board)):
+            for x in range(len(board) - t_v + 1):
+                word = is_p(row[x:x+t_v])
+                result += [word]
+    return max(result)
+
+for t in range(10):
     N = int(input())
-    board =[]
-    re_board = []
-    n = 8
+    board = [list(input()) for row in range(100)]
+    board2 = [[0] * 100 for _ in range(100)]
 
-    for i in range(n):
-        board.append(input())
-        re_board = list(map(list, zip(*board)))
-    print(board)  # ['CBCABBAC' 'BBABCABA', 'ABCBCCCA']
-    print(re_board)  # [['C', 'B', 'A', 'B', 'B', 'C', 'C', 'C'],
+    # board2 만들기
+    for j in range(100):
+        for i in range(100):
+            board2[j][i] = board[i][j]
 
-    for k in range(n):  # 행
-        for l in range(1, n+1):  #길이
-            for j in range(n-l):  # 몇번째부터 검사하는지
-                if board[k][j] != board[k][j-8+l]:
-                    break
-                else:
-                    print('board[k][j]')
-
-
-# <회문 구하는 방법>
-# def isPalindrome(x):
-#     result = True
-#     for i in range(len(x) // 2):
-#     if x[i] != word[-1-i]:
-#         result = False
-#         break
-#     return result
+    data = [longest_p(board), longest_p(board2)]
+    print('#{} {}'.format(N, max(data)))
