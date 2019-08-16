@@ -1,6 +1,4 @@
-from time import time
-
-board = [[0] * 10 for _ in range(10)]
+board = [[0] * 100 for _ in range(100)]
 cnt_ans = 0
 for t in range(4):
     cnt = 0
@@ -10,12 +8,8 @@ for t in range(4):
             board[i][j] += 1
             cnt += 1
 
-for k in range(10):
-    for l in range(10):
+for k in range(100):
+    for l in range(100):
         if board[k][l] >= 1:
             cnt_ans += 1
 print(cnt_ans)
-
-
-start = time()
-print(start-time())
