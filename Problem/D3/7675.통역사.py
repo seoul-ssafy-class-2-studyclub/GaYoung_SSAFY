@@ -6,6 +6,7 @@ for t in range(int(input())):
     for i in range(len(data)):
         if data[i] in word:
             result_word += [i]
+            
 
     result = []
     cnt = 0
