@@ -1,15 +1,18 @@
-for case in range(1, 11):
+for t in range(10):
     board = []
     N = int(input())
-    for row in range(100):
+    for i in range(100):
         board.append(list(map(int, input().split())))
-    j = board[99].index(2)
-    for i in range(99, 0, -1):
-        if j != 0 and board[i][j-1]:
-            while j > 0 and board[i][j-1]:
-                j -= 1
-        elif j != 99 and board[i][j+1]:
-            while j < 99 and board[i][j+1]:
-                j += 1
 
-    print(f'#{case} {j}')
+    start = board[99].index(2)  # 9
+
+    for k in range(99, 0, -1):
+        if start != 0 and board[k][start - 1] == 1:
+            while start > 0 and board[k][start - 1] == 1:
+                start -= 1
+
+        elif start != 99 and board[k][start + 1] == 1:
+            while start < 99 and board[k][start + 1] == 1:
+                start += 1
+    
+    print(start)
