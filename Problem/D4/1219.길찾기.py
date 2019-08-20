@@ -18,9 +18,8 @@ for t in range(1):
     case, N = map(int, input().split())
     data = list(map(int, input().split()))
     adj = [[0] * 100 for i in range(100)]
-    print(data)
+
     for d in range(0, N * 2, 2):
         adj[data[d]][data[d+1]] += 1
-    # print('#{} {}'.format(case, dfs(adj)))
-    for i in adj:
-        print(adj[1][99])
+
+    print('#{} {}'.format(case, dfs(adj)))
