@@ -15,4 +15,4 @@ for t in range(10):
             while start < 99 and board[k][start + 1] == 1:
                 start += 1
     
-    print(start)
+    print('#{} {}'.format(N, start))
