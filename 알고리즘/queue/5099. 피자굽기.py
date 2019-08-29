@@ -15,14 +15,17 @@ for t in range(int(input())):
         if queue[i][1] // 2 == 0:
             if len(cheese) == 0:
                 a = queue.pop(0)
+                # print(queue)
             elif len(cheese) > 0:
                 queue.pop(0)
                 queue.append(cheese.pop(0))
         elif queue[i][1] // 2 != 0:
             if len(queue) == 1:
-                print('break')
+                # print('break')
+                a = queue.pop()
                 break
             else:
                 queue[i][1] = queue[i][1] // 2
                 queue.append(queue.pop(0))
-    print(a[0])
+    # print(a)
+    print('#{} {}'.format(t+1, a[0]))
