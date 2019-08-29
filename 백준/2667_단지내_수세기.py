@@ -7,12 +7,12 @@ for n in range(N):
     board.append(list(map(int, input()))) 
 
 result_cnt = []
-for x in range(N):
-    for y in range(N):
-        if board[x][y] == 1:
+for i in range(N):
+    for j in range(N):
+        if board[i][j] == 1:
             cnt = 1
-            board[x][y] = -1
-            queue = [x, y]
+            board[i][j] = -1
+            queue = [i, j]
             while queue:
                 x = queue.pop(0)
                 y = queue.pop(0)
@@ -25,8 +25,7 @@ for x in range(N):
                         queue.append(yi)
                         cnt += 1
             result_cnt.append(cnt)
-            result = sorted(result_cnt)
-print(len(result))
-
-for r in result:
+result_cnt.sort()
+print(len(result_cnt))
+for r in result_cnt:
     print(r)
