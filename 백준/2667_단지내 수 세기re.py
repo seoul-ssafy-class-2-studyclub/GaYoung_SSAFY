@@ -4,7 +4,7 @@ for n in range(N):
     board.append(list(map(int, input())))
 
 stack = []
-cnt_list = []
+result_cnt = []
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
@@ -27,7 +27,8 @@ for i in range(N):
                             stack.append(xi)
                             stack.append(yi)
                             cnt += 1
-            cnt_list.append(cnt)
-print(stack)
-print(board)
-print(cnt_list)
+            result_cnt.append(cnt)
+result_cnt.sort()
+print(len(result_cnt))
+for r in result_cnt:
+    print(r)

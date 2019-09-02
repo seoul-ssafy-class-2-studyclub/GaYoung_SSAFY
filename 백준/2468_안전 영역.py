@@ -16,7 +16,7 @@ queue = []
 cnt_list = []
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 result = 0
-for k in range(1, mymax + 1):
+for k in range(mymax + 1):
     board = deepcopy(new_board)
     for i in range(N):
         for j in range(N):
