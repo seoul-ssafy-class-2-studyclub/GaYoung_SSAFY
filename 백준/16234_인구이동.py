@@ -8,19 +8,16 @@ for n in range(N):
 
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
-
-
 cnt = 0
-total = []
+total = [0]
 total_num = []
-while len(total) < 1:
+while total:
     total = []
     total_num = []
-    queue = []
     visit = [[False] * N for _ in range(N)]
-    cnt = 0
     for i in range(N):
         for j in range(N):
+            queue = []
             ls = []
             ls_num = []
             if board[i][j] != 0 and not visit[i][j]:
@@ -38,19 +35,23 @@ while len(total) < 1:
                                 queue.append((xi, yi))
                                 ls.append([xi, yi])
                                 ls_num.append(board[xi][yi])
+
+
                 if len(ls) != 1:
                     total.append(ls)
                 if len(ls_num) != 1:
                     total_num.append(ls_num)
 
-    for t in total_num:
-        mysum = sum(t)
-        mylen = len(t)
-    mymean = mysum // mylen
+    if len(total_num) == 0:
+        break
+    else:
+        for t in range(len(total_num)):
+            mysum = sum(total_num[t])
+            mylen = len(total_num[t])
+            mymean = mysum // mylen
+            for y, x in total[t]:
+                board[y][x] = mymean
 
-    for tot in total:
-        for t in tot:
-            board[t[0]][t[1]] = mymean
     cnt += 1
-pprint(board)
+
 print(cnt)
