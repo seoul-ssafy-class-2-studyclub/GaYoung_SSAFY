@@ -1,3 +1,10 @@
+def is_Palindrome(word):
+    for i in range(len(word) // 2):
+        if word[i] != word[-i-1]:
+            return False
+    return True
+
+    
 T = int(input())
 
 for t in range(1, T + 1):
