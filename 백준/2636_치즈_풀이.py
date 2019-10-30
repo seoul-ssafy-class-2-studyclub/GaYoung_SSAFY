@@ -46,7 +46,7 @@ def melt():
     for i in range(N):
         for j in range(M):
             for a, b in near:
-                if 0 <= i + a < N and 0 <= j + b < M and cheeze[i + a][j + b] == 1:
+                if 0 <= i + a < N and 0 <= j + b < M and cheeze[i][j] == 1:
                     if cheeze[i + a][j + b] == 2:
                         cheeze[i][j] = 3
 
@@ -54,17 +54,19 @@ def melt():
         for j in range(M):
             if cheeze[i][j] == 3:
                 cheeze[i][j] = 2
+
     # return 1을 해서 시간이 몇시간 지나는지 check한다
     return 1
 
 
 # 치즈(1)인 것 세는 함수로 치즈갯수 세기
 def count_cheeze():
+    cnt = 0
     for i in range(N):
         for j in range(M):
-            cnt = 1
             if cheeze[i][j] == 1:
                 cnt += 1
+
     return cnt
 
 
@@ -72,22 +74,40 @@ def count_cheeze():
 N, M = map(int, input().split())
 cheeze = [list(map(int, input().split())) for _ in range(N)]
 
-hour = -1
-air_out(0, 0)
-temp = []
-cnt = 1
+# 치즈 첫번째 시작 칸의 값을 2로 바꿔주고 시작
+cheeze[0][0] = 2
 
-while cnt > 0:
-    cnt = count_cheeze()
-    temp.append(cnt)
-    hour += melt()
+hour = 0
+# 치즈갯수가 0이 아닐때까지 돌려야하므로 cheezes = 0이면 밑에 while문에 들어가지 못함!
+cheezes = 1
+air_out(0, 0)
+temp = 0
+
+while cheezes != 0:
+
+    # 단계마다 치즈 갯수 세기
+    cheezes = count_cheeze()
+
+    # 치즈가 있으면 temp값 갱신, 치즈가 없으면 갱신하지말고 stop
+    if cheezes:
+        temp = cheezes
+    else:
+        break
+
+    # 이미 외부공기, 내부공기가 한번 나뉘어졌으므로, 0일때, 이것을 외부공기로 바꿀 것인지, 내부공기로 내버려둘것인지 결정
+    # 0주변에 2가 있으면, 외부공기로 바꾸기!
     for i in range(N):
         for j in range(M):
             if cheeze[i][j] == 0:
-                air_out(i, j)
+                for a, b in near:
+                    if 0 <= i + a < N and 0 <= j + b < M and cheeze[i + a][j + b] == 2:
+                        # 외부공기 시작 칸을 2로 바꾸고 시작
+                        cheeze[i][j] = 2
+                        air_out(i, j)
+    hour += melt()
 
-print(temp)
 print(hour)
+print(temp)
 '''
 13 12
 0 0 0 0 0 0 0 0 0 0 0 0
