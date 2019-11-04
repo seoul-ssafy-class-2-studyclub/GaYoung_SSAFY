@@ -31,19 +31,22 @@ def virus(arr, k):
             virus(arr + [can_virus[idx]], idx)
 
 
-mymin = 99999999999
-def spread():
-    cnt = 0
+def spread(new_board, q):
+    global cnt, safe
+    cnt = -1
     while q:
-        x, y = q.pop(0)
-        for a, b in near:
-            xi, yi = (x + a, y + b)
-            if 0 <= xi < N and 0 <= yi < M:
-                if new_board[xi][yi] == 0:
-                    new_board[xi][yi] = 1
-                    q.append((xi, yi))
-                    cnt += 1
-    return cnt
+        cnt += 1
+        for _ in range(len(q)):
+            x, y = q.pop(0)
+            for a, b in near:
+                xi, yi = (x + a, y + b)
+                if 0 <= xi < N and 0 <= yi < N:
+                    if new_board[xi][yi] == 0:
+                        new_board[xi][yi] = 1
+                        safe -= 1
+                        q.append((xi, yi))
+
+    return cnt, safe
 
 
 N, M = map(int, input().split())
@@ -72,11 +75,12 @@ board
 '''
 
 virus([], -1)
+# print(result)
 '''
 result
 [[[0, 0], [1, 5], [4, 3]], [[0, 0], [1, 5], [6, 0]], [[0, 0], [1, 5], [6, 6]], [[0, 0], [4, 3], [6, 0]], [[0, 0], [4, 3], [6, 6]], [[0, 0], [6, 0], [6, 6]], [[1, 5], [4, 3], [6, 0]], [[1, 5], [4, 3], [6, 6]], [[1, 5], [6, 0], [6, 6]], [[4, 3], [6, 0], [6, 6]]]
 '''
-cnt = 0
+mymin = 999999
 for r in result:
     q = r
     new_board = [row[:] for row in board]
@@ -84,10 +88,15 @@ for r in result:
         a = r[s][0]
         b = r[s][1]
         new_board[a][b] = '*'  # 바이러스인 곳 표시
-        for n in new_board:
-            print(n)
-        print(spread())
-        print('====================================')
+        # for n in new_board:
+        #     print(n)
+        # print()
+        c = spread(new_board, q)[0]
+        print(c)
+    # if mymin > spread(new_board, q)[0]:
+    #     mymin = cnt
+# print(mymin)
+        # print('====================================')
 # print(board)
 # print(spread(cnt))
         # print(a)
