@@ -28,7 +28,11 @@ N, M = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 
 queue = []
+zero = 0
 for i in range(N):
     for j in range(M):
         if board[i][j] != 0 and board[i][j] != 6:
             queue.append((i, j))
+        elif board[i][j] == 0:
+            zero += 1
+
