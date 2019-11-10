@@ -1,23 +1,4 @@
 '''
-4 4 1
-1 1 2 3
-5 2 4 2
-3 1 3 5
-2 1 3 2
-2 0 1
-30
-
-4 4 2
-1 1 2 3
-5 2 4 2
-3 1 3 5
-2 1 3 2
-2 0 1
-3 1 3
-22
-'''
-
-'''
 [풀이방법]
 1. x 배수, d방향, k칸 : def move
    1-1. 배수 for m in range(M) 돌면서 m %x == 0인 것들 도는데,
@@ -52,6 +33,26 @@ def move(x, d, k):
     return board
 
 
+def average():
+    sum_num = 0
+    cnt = 0
+    for n in range(N):
+        for m in range(M):
+            if board[n][m] != 0:
+                sum_num += board[n][m]
+                cnt += 1
+    mean_num = sum_num / cnt
+
+    for n in range(N):
+        for m in range(M):
+            if board[n][m] != 0 and board[n][m] > mean_num:
+                board[n][m] -= 1
+            elif board[n][m] != 0 and board[n][m] < mean_num:
+                board[n][m] += 1
+
+    return board
+
+
 def change():
     global flag
     q = deque()
@@ -80,42 +81,28 @@ def change():
                         board[i][j] = 0
 
 
-
-
-def average():
-    sum_num = 0
-    cnt = 0
-    for n in range(N):
-        for m in range(M):
-            if board[n][m] != 0:
-                sum_num += board[n][m]
-                cnt += 1
-    mean_num = sum_num / cnt
-
-    for n in range(N):
-        for m in range(M):
-            if board[n][m] != 0 and board[n][m] > mean_num:
-                board[n][m] -= 1
-            elif board[n][m] != 0 and board[n][m] < mean_num:
-                board[n][m] += 1
-
-    return board
-
-
 N, M, T = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 near = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-flag = 0
+
 for t in range(T):
     x, d, k = map(int, input().split())
     move(x, d, k)
+    for b in board:
+        print(b)
+    print('======================')
+    flag = 0
     change()
-
-    if flag == 0:
+    for b in board:
+        print(b)
+    print('======================')
+    if flag != 1:
         average()
-
-# print(board)
+    for b in board:
+        print(b)
+    print('======================')
+    print('----------------------------')
 
 
 
@@ -125,3 +112,53 @@ for n in range(N):
         result += board[n][m]
 
 print(result)
+
+'''
+4 4 1
+1 1 2 3
+5 2 4 2
+3 1 3 5
+2 1 3 2
+2 0 1
+30
+
+4 4 2
+1 1 2 3
+5 2 4 2
+3 1 3 5
+2 1 3 2
+2 0 1
+3 1 3
+22
+
+4 4 3
+1 1 2 3
+5 2 4 2
+3 1 3 5
+2 1 3 2
+2 0 1
+3 1 3
+2 0 2
+22
+
+4 4 4
+1 1 2 3
+5 2 4 2
+3 1 3 5
+2 1 3 2
+2 0 1
+3 1 3
+2 0 2
+3 1 1
+0
+
+4 6 3
+1 2 3 4 5 6
+2 3 4 5 6 7
+3 4 5 6 7 8
+4 5 6 7 8 9
+2 1 4
+3 0 1
+2 1 2
+26
+'''
