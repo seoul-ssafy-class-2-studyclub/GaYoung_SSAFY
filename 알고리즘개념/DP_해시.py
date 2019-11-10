@@ -54,7 +54,7 @@ def get_page(url):
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 
-def dfs(x, y, cnt=1, start)
+def dfs(x, y, cnt=1, start):
     # if cache[]
     #     return cnt
     flag = 0
