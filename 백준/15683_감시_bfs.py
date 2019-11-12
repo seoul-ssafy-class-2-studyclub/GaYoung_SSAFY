@@ -32,17 +32,3 @@ dis = {1: [[(-1, 0)], [(1, 0)], [(0, 1)], [(0, -1)]],
 
 N, M = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
-
-cctv = []
-zero = 0
-for i in range(N):
-    for j in range(M):
-        if board[i][j] != 0 and board[i][j] != 6:
-            cctv.append((i, j))
-        elif board[i][j] == 0:
-            zero += 1
-
-for d in dis.keys():
-    for c in cctv:
-        if d == c:
-            for a, b in 
