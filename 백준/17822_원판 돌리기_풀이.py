@@ -41,7 +41,13 @@ def average():
             if board[n][m] != 0:
                 sum_num += board[n][m]
                 cnt += 1
-    mean_num = sum_num / cnt
+
+    # cnt == 0이면 Division Error
+    if cnt != 0:
+        mean_num = sum_num / cnt
+    else:
+        pass
+
 
     for n in range(N):
         for m in range(M):
@@ -65,12 +71,14 @@ def change():
                     x, y = q.popleft()
                     for a, b in near:
                         xi, yi = (x + a, y + b)
-                        if 0 <= xi < N and -1 <= yi < M:
+                        if 0 <= xi < N and -1 <= yi <= M:
                             if yi == -1:
-                                yi = M
+                                yi = M-1
                             elif yi == M:
-                                yi = -1
-                            elif board[xi][yi] == board[x][y] and [xi, yi] not in ls:
+                                yi = 0
+                            # if yi == -1:이걸 쓰고 밑에 조건을 elif로 두면, if 에서걸리면 밑에 조건문을 안돌아감.
+                            # 밑에 조건문은 무조건 돌아야함 -> 새로 조건문작성!!!!
+                            if board[xi][yi] == board[x][y] and [xi, yi] not in ls:
                                 q.append([xi, yi])
                                 ls.append([xi, yi])
 
@@ -89,20 +97,20 @@ near = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 for t in range(T):
     x, d, k = map(int, input().split())
     move(x, d, k)
-    for b in board:
-        print(b)
-    print('======================')
+    # for b in board:
+    #     print(b)
+    # print('======================')
     flag = 0
     change()
-    for b in board:
-        print(b)
-    print('======================')
+    # for b in board:
+    #     print(b)
+    # print('======================')
     if flag != 1:
         average()
-    for b in board:
-        print(b)
-    print('======================')
-    print('----------------------------')
+    # for b in board:
+    #     print(b)
+    # print('======================')
+    # print('----------------------------')
 
 
 
@@ -112,6 +120,7 @@ for n in range(N):
         result += board[n][m]
 
 print(result)
+
 
 '''
 4 4 1
