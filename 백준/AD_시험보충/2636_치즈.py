@@ -1,35 +1,90 @@
-import itertools
-arr = [1, 2, 3, 4, 5]
-for k in range(len(arr)+1):
-    res = list(itertools.combinations(arr, k))
-    print(res)
+import collections
+from pprint import pprint
 
-for r in res:
-    print(list(r))
+near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+def out_air(x, y):
+    for a, b in near:
+        if 0 <= x + a < N and 0 <= y + b < M and board[x + a][y + b] == 0:
+            board[x + a][y + b] = 2
+            out_air(x + a, y + b)
 
-# import collections
-# from pprint import pprint
-#
-# N, M = map(int, input().split())
-# board = [list(map(int, input().split())) for _ in range(N)]
-#
-# cnt = 0
-# near = [(-1, 0), (0, 1), (0, -1), (1, 0)]
-# q = collections.deque()
-#
-#
-# q.append((0, 0))
-#
-# while q:
-#
-#     x, y = q.popleft()
-#     if board[x][y] == 0:
-#         cnt += 1
-#         board[x][y] = 2
-#         for a, b in near:
-#             xi, yi = x + a, y + b
-#             if 0 <= xi < N and 0 <= yi < M and board[xi][yi] == 0:
-#                 q.append((xi, yi))
-#
-# print(cnt)
+
+def melt():
+    for i in range(N):
+        for j in range(M):
+            for a, b in near:
+                if 0 <= i + a < N and 0 <= j + b < M and board[i][j] == 1:
+                    if board[i + a][j + b] == 2:
+                        ls.append((i + a, j + b))
+
+    for l in range(len(ls)):
+        x, y = ls.pop(0)
+        board[x][y] = 2
+    return 1
+
+
+def count_c():
+    cnt = 0
+    for i in range(N):
+        for j in range(M):
+            if board[i][j] == 1:
+                cnt += 1
+    return cnt
+
+
+N, M = map(int, input().split())
+board = [list(map(int, input().split())) for _ in range(N)]
+q = collections.deque()
+
+board[0][0] = 2
+out_air(0, 0)
+
 # pprint(board)
+'''
+[[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+ [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+ [2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2],
+ [2, 1, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2],
+ [2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
+ [2, 1, 1, 1, 1, 1, 0, 1, 1, 2, 2, 2],
+ [2, 1, 1, 1, 1, 0, 0, 1, 1, 2, 2, 2],
+ [2, 2, 1, 1, 0, 0, 0, 1, 1, 2, 2, 2],
+ [2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
+ [2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
+ [2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
+ [2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2],
+ [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+'''
+
+cheeze = 1  # 치즈 갯수
+queue = collections.deque()
+ls = []
+hour = 0
+last = 0
+# while cheeze != 0:
+cheeze = count_c()
+
+# if cheeze != 0:
+#     last = cheeze
+# else:
+#     break
+#
+
+hour += melt()
+
+for i in range(N):
+    for j in range(M):
+        if board[i][j] == 0:
+            for a, b in near:
+                ii, jj = i + a, j + b
+                if 0 <= ii < N and 0 <= jj < M and board[ii][jj] == 2:
+                    # 외부공기 시작 칸을 2로 바꾸고 시작
+                    board[ii][jj] = 2
+                    out_air(ii, jj)
+
+
+print(ls)
+pprint(board)
+print(hour)
+print(last)
+
