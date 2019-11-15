@@ -1,3 +1,4 @@
+# 메모리 초과
 result = []
 def per(arr):  # 순열
     if len(arr) == sum(word):
