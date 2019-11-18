@@ -13,11 +13,12 @@ def out_air(i, j):
 def melt():
     for i in range(N):
         for j in range(M):
-            for a, b in near:
-                xi, yi = i + a, j + b
-                if 0 <= xi < N and 0 <= yi < M:
-                    if board[xi][yi] == 2:
-                        board[xi][yi] = 3
+            if board[i][j] == 1:
+                for a, b in near:
+                    xi, yi = i + a, j + b
+                    if 0 <= xi < N and 0 <= yi < M:
+                        if board[xi][yi] == 2:
+                            board[xi][yi] = 3
 
     for i in range(N):
         for j in range(M):
@@ -34,12 +35,11 @@ board[0][0] = 2
 out_air(0, 0)
 # pprint(board)
 
-        #
-        #
-        # if board[i][j] == 1:
-        #
-        #     q.append((i, j))
-        #     melt()
-
-            # pprint(board)
-            # print('====================================')
+for i in range(N):
+    for j in range(M):
+        if board[i][j] == 0:
+            for a, b in near:
+                ii, jj = i + a, j + b
+                if 0 <= ii < N and 0 <= jj < M and board[ii][jj] == 2:
+                    board[i][j] = 2
+                    out_air(i, j)

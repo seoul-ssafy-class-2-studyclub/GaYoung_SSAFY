@@ -1,17 +1,10 @@
 from collections import deque
 
-def bfs():
-    pass
-
-
-
 N, L, R = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 cnt = 0
-
-
 total = [0]
 total_num = []
 
@@ -40,15 +33,18 @@ while total:
 
                 if len(ls) != 1:
                     total.append(ls)
+                if len(ls_total) != 1:
                     total_num.append(ls_total)
 
     if len(total_num) == 0:
         break
     else:
         for i in range(len(total_num)):
-            mymean = total_num[i] // total[i]
-            for y, x in total[i]:
-                board[y][x] = mymean
+            mysum = sum(total_num[i])
+            mylen = len(total[i])
+            mymean = mysum // mylen
+            for x, y in total[i]:
+                board[x][y] = mymean
 
     cnt += 1
 print(cnt)
