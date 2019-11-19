@@ -10,11 +10,11 @@ def out_air(i, j):
 def melt():
     for i in range(N):
         for j in range(M):
+            if board[i][j] == 1:
                 for a, b in near:
                     xi, yi = i + a, j + b
-                    if 0 <= xi < N and 0 <= yi < M and board[xi][yi] == 1:
-                        if board[xi][yi] == 2:
-                            board[xi][yi] = 3
+                    if 0 <= xi < N and 0 <= yi < M and board[xi][yi] == 2:
+                            board[i][j] = 3
 
     for i in range(N):
         for j in range(M):
@@ -38,9 +38,9 @@ cheeze = N * M
 
 board[0][0] = 2
 out_air(0, 0)
-
 hour = 0
 rs = 0
+
 while cheeze != 0:
 
     cheeze = count_cheeze()
@@ -50,6 +50,8 @@ while cheeze != 0:
     else:
         break
 
+    hour += melt()
+
     for i in range(N):
         for j in range(M):
             if board[i][j] == 0:
@@ -58,8 +60,27 @@ while cheeze != 0:
                     if 0 <= ii < N and 0 <= jj < M and board[ii][jj] == 2:
                         board[i][j] = 2
                         out_air(i, j)
+    for b in board:
+        print(b)
+    print('=====================================')
 
-    hour += melt()
+
 
 print(hour)
 print(rs)
+'''
+13 12
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 1 1 0 0 0
+0 1 1 1 0 0 0 1 1 0 0 0
+0 1 1 1 1 1 1 0 0 0 0 0
+0 1 1 1 1 1 0 1 1 0 0 0
+0 1 1 1 1 0 0 1 1 0 0 0
+0 0 1 1 0 0 0 1 1 0 0 0
+0 0 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 1 1 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+'''
