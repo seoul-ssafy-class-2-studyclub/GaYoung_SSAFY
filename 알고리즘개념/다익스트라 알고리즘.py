@@ -43,3 +43,4 @@ def Dijkstra(G, r):    # G: 그래프, r: 시작 정점
                 D[v] = D[min_idx] + val
                 P[v] = min_idx
 
+# heapq 사용 -> 우선탐색큐!
