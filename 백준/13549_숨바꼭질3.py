@@ -26,7 +26,9 @@ while q:
             flag = True
             break
 
-        while 0 <= nxt <= 100000:
+        # while nxt <= 100000:하면 시간초과
+        # -> why? 만약 처음에 N이 0으로 주어지면 0 * 2^n해도 계속 0이므로 더 나아갈 수 없음
+        while 0 < nxt <= 100000:
             if visit[nxt] == 0:
                 visit[nxt] = 1
                 q.append(nxt)
