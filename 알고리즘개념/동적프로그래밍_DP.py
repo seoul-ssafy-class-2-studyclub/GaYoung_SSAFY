@@ -5,6 +5,11 @@
 '''
 
 '''
+구현1. topDown : 재귀
+구현2. bottomUp : 반복문
+'''
+
+'''
 [DP 사용 경우]
  - 최적 부분문제 구조(Optimal substructure)
  - 중복 부분문제 구조(Overlapping subproblems)

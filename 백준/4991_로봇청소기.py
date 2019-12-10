@@ -32,6 +32,14 @@ xxxxx.....xxxxx
 .....x....
 0 0
 '''
+
+'''
+MST 불가! why? 
+    최소거리한다고 되는 것이 아님
+    . 2 .
+    1   4  일때 1 -> 2 -> 4로 되어야하는데
+    . 3 .  mst는 1 -> 2 -> 3순으로 간다.
+'''
 from collections import deque
 
 w, h = map(int, input().split())
@@ -59,3 +67,29 @@ adj = [[0] * (len(dusts) + 1) for _ in range(len(dusts) + 1)]
 #     print(a)
 
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+# 1일때 bfs한번 돌고 그에 따른 길이 구해서 인접행렬에 값 적기
+
+for i in range(len(dusts)):
+    q = deque(dusts[i])
+    # while q:
+    #     x, y = q.
+
+print(q)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
