@@ -7,11 +7,33 @@ print(a)
 b = y % abs(-x)
 print(b)
 
-# NUM 7
-# NUM 8
-# ADD
-# SUB
-# DIV
-# END
-# 1
-# 2
+
+NUM -4
+DIV
+END
+2
+13
+-13
+
+NUM 4
+DIV
+END
+2
+13
+-13
+
+NUM -4
+MOD
+END
+2
+13
+-13
+
+NUM 4
+MOD
+END
+2
+13
+-13
+
+QUIT
