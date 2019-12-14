@@ -22,6 +22,7 @@ def spring():
                 if x <= energy[i][j]:
                     energy[i][j] -= x
                     x += 1
+                    # tree[i][j]에 append해줘야지 그 다음 값이 나올 수 있어서 appendleft 하면 안됨
                     tree[i][j].append(x)
                 elif x > energy[i][j]:
                     cnt -= 1  # 즉시 죽음
@@ -44,7 +45,8 @@ def fall():
                     for a, b in near:
                         xi, yi = i + a, j + b
                         if 0 <= xi < N and 0 <= yi < N:
-                            tree[xi][yi].append(1)
+                            # appendleft로 해야 작은 순서대로 들어간다!
+                            tree[xi][yi].appendleft(1)
                             cnt += 1
 
 def winter():
@@ -61,46 +63,12 @@ energy = [[5] * N for _ in range(N)]
 for m in range(M):
     x, y, age = map(int, input().split())
     tree[x - 1][y - 1].append(age)
-print('start')
-print('tree')
-pprint(tree)
-print('energy')
-pprint(energy)
-
 
 cnt = M
 death = deque()
 for k in range(K):
     spring()
-    print('spring')
-    print('tree')
-    pprint(tree)
-    print('energy')
-    pprint(energy)
-    print()
-
     summer()
-    print('summer')
-    print('tree')
-    pprint(tree)
-    print('energy')
-    pprint(energy)
-    print()
-
     fall()
-    print('fall')
-    print('tree')
-    pprint(tree)
-    print('energy')
-    pprint(energy)
-    print()
-
     winter()
-    print('winter')
-    print('tree')
-    pprint(tree)
-    print('energy')
-    pprint(energy)
-
-    print(cnt)
-    print('====================================================================')
+print(cnt)
