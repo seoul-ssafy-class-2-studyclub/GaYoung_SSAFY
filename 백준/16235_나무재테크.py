@@ -10,8 +10,10 @@
 # 4. 겨울: 양분 추가 -> A[r][c]이며 입력으로 주어짐
 # Q. K년이 지난 후 상도의 땅에 살아있는 나무의 개수 구하기
 
+from pprint import pprint
 from collections import deque
 from heapq import heappush, heappop
+
 
 def spring():
     global cnt
@@ -63,12 +65,47 @@ for m in range(M):
     x, y, age = map(int, input().split())
     tree[x - 1][y - 1].append(age)
 
+print('first')
+print('tree')
+pprint(tree)
+print('energy')
+pprint(energy)
+print()
+print('==============================')
+
 cnt = M
 death = deque()
 for k in range(K):
     spring()
+    print('spring')
+    print('tree')
+    pprint(tree)
+    print('energy')
+    pprint(energy)
+    print()
+
     summer()
+    print('summer')
+    print('tree')
+    pprint(tree)
+    print('energy')
+    pprint(energy)
+    print()
+
     fall()
+    print('fall')
+    print('tree')
+    pprint(tree)
+    print('energy')
+    pprint(energy)
+    print()
+
     winter()
+    print('winter')
+    print('tree')
+    pprint(tree)
+    print('energy')
+    pprint(energy)
+    print()
 
 print(cnt)
