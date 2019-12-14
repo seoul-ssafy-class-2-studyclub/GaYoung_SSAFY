@@ -49,5 +49,3 @@ for i in range(2):
             heappush(board[i][j], 4)
             print(board)
             print('-------------------')
-
-tree[i][j] and

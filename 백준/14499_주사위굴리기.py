@@ -9,6 +9,7 @@ for g in go:
     if 0 <= xi <= N and 0 <= yi < M:
         x, y = xi, yi
         if board[xi][yi] == 0:
+            pass
 
     else:
         pass

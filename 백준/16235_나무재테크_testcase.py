@@ -12,20 +12,17 @@
 
 from pprint import pprint
 from collections import deque
-from heapq import heappush, heappop
-
 
 def spring():
     global cnt
-
     for i in range(N):
         for j in range(N):
             for k in range(len(tree[i][j])):
-                x = heappop(tree[i][j])
-                if x < energy[i][j]:
+                x = tree[i][j].popleft()
+                if x <= energy[i][j]:
                     energy[i][j] -= x
                     x += 1
-                    heappush(tree[i][j], x)
+                    tree[i][j].append(x)
                 elif x > energy[i][j]:
                     cnt -= 1  # 즉시 죽음
                     death.append((i, j, x))
@@ -45,9 +42,9 @@ def fall():
             for k in range(len(tree[i][j])):
                 if tree[i][j][k] % 5 == 0:
                     for a, b in near:
-                        xi, yi = x + a, y + b
+                        xi, yi = i + a, j + b
                         if 0 <= xi < N and 0 <= yi < N:
-                            heappush(tree[xi][yi], 1)
+                            tree[xi][yi].append(1)
                             cnt += 1
 
 def winter():
@@ -58,20 +55,18 @@ def winter():
 
 N, M, K = map(int, input().split())
 insert_energy = [list(map(int, input().split())) for _ in range(N)]
-tree = [[[] for _ in range(N)] for _ in range(N)]
+tree = [[deque() for _ in range(N)] for _ in range(N)]
 energy = [[5] * N for _ in range(N)]
-
+# print(tree)
 for m in range(M):
     x, y, age = map(int, input().split())
     tree[x - 1][y - 1].append(age)
-
-print('first')
+print('start')
 print('tree')
 pprint(tree)
 print('energy')
 pprint(energy)
-print()
-print('==============================')
+
 
 cnt = M
 death = deque()
@@ -106,6 +101,6 @@ for k in range(K):
     pprint(tree)
     print('energy')
     pprint(energy)
-    print()
 
-print(cnt)
+    print(cnt)
+    print('====================================================================')
