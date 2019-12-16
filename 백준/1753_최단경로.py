@@ -14,12 +14,12 @@ visit = [False] * V
 
 for e in range(E):
     n1, n2, w = map(int, input().split())
-    if n2 - 1 in adj[n1 - 1]:
-        if adj[n1 - 1][n2 - 1] > w:
+    if n2 - 1 in adj[n1 - 1]:  # 값이 존재하면
+        if adj[n1 - 1][n2 - 1] > w:  # 기존 값보다 작을때만 갱신
             adj[n1 - 1][n2 - 1] = w
-    else:
-        adj[n1 - 1][n2 - 1] = w
-print(adj)
+    else:  # 기존에 값이 존재하지 않는다면
+        adj[n1 - 1][n2 - 1] = w  # 값을 넣어줌
+# print(adj)
 
 q = []
 heappush(q, (0, start))
@@ -36,10 +36,7 @@ while q:
                 heappush(q, (dijkstra[key], key))
 
             visit[temp_n] = True
-            print(q)
-            print(dijkstra)
-            print(visit)
-            print()
+
 for i in range(V):
     if dijkstra[i] == inf:
         print('INF')
