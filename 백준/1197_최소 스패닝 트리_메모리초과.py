@@ -8,5 +8,4 @@ for e in range(E):
 
 visit = [True] + [False] * (V-1)
 
-ㅠ
 # print(sum_w)
