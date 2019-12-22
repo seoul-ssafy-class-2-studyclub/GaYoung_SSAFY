@@ -26,6 +26,26 @@
 1000 1000
 2000 1000
 '''
+def dis():
+    while q:
+        node = q.pop()
+        if visit[node]:
+            continue
+        else:
+            visit[node] = True
+            x1, y1 = ls[node]
+            for i in range(n + 2):
+                if visit[i] == False:
+                    x2, y2 = ls[i]
+                    if abs(x1 - x2) + abs(y1 - y2) <= 1000:
+                        q.append(i)
+
+        if visit[-1]:
+            return 'happy'
+    return 'sad'
+
+
+result = []
 for t in range(int(input())):
     n = int(input())
     ls = []
@@ -34,15 +54,9 @@ for t in range(int(input())):
     for i in range(n+2):
         ls.append(list(map(int, input().split())))
 
-    for l in range(1, n+2):
-        dis = abs(ls[l][0] - ls[l-1][0]) + abs(ls[l][1] - ls[l-1][1])
+    visit = [False] * (n+2)
+    q = [0]
 
-        if dis > 1000:
-            stop = True
-            break
 
-    if stop:
-        res = 'sad'
-    else:
-        res = 'happy'
-    print(res)
+    result.append(dis())
+print('\n'.join(result))
