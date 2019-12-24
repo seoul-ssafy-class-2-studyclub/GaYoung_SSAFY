@@ -36,6 +36,26 @@ for s1, s2 in seats:
             q[dis][(s1, s2)].append((p1, p2))
 # [{}, {(0, 1): [(0, 2), (1, 1)]}, {}, {}, {(3, 1): [(1, 1)]}, {}, {}, {}, {}, {}, {(3, 1): [(0, 2)]}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
 
-# seats를 for문 돌리면서 people visit 체크하기!
-visited = [[False] * C for _ in range(R)]
+res = 0
+# q를 for문 돌리면서 people visit 체크하기!
+visit = [[False] * C for _ in range(R)]
+for qq in q:  # seat: (0, 1), (3, 1)
+    if len(qq):  # 값이 존재한다면
+        for key, value in qq.items():
+            if visit[key[0]][key[1]]:
+                continue
 
+            cnt_pp = 0
+            for x, y in value:  # value는 people
+                if visit[x][y]:
+                    continue
+                cnt_pp += 1
+                visit[x][y] = True
+
+            if cnt_pp:
+                visit[key[0]][key[1]] = True
+
+            if cnt_pp >= 2:
+                res += 1
+
+print(res)
