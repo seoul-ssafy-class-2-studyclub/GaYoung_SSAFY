@@ -5,6 +5,7 @@ def perm(x,ls=[],st=0):
    for i in range(st,x):
        if i not in ls:
            perm(x,ls+[i],i+1)
+
 def start():
    global n, d, cnt
    shoot = []
@@ -39,17 +40,17 @@ for i in range(n):
        if a[j] == 1:
            enermy_origin.append([i,j])
 perm(m)
-
-rs_set = []
-for j in su_set:
-   enermy = [i[:] for i in enermy_origin]
-   ranger = []
-   len(enermy)
-   cnt = 0
-   for k in j:
-       ranger.append([n,k])
-   for i in range(n):
-       if enermy:
-           start()
-   rs_set.append(cnt)
-print(max(rs_set))
+print(su_set)
+# rs_set = []
+# for j in su_set:
+#    enermy = [i[:] for i in enermy_origin]
+#    ranger = []
+#    len(enermy)
+#    cnt = 0
+#    for k in j:
+#        ranger.append([n,k])
+#    for i in range(n):
+#        if enermy:
+#            start()
+#    rs_set.append(cnt)
+# print(max(rs_set))
