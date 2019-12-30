@@ -22,7 +22,7 @@ def go2party(st, ed):
             to_time = nxt_time+time
             if spendt[nxt] > to_time:
                 spendt[nxt] = to_time
-                heappush(q,[to_time,nxt])
+                heappush(q, [to_time, nxt])
     spend[st] = temp + spendt[st]
 
 
@@ -33,7 +33,7 @@ for i in range(m):
     st, ed, t = map(int, input().split())
     nxt_ls[st].append([t, ed])
 
-spend = [0]*(n+1)
+spend = [0] * (n+1)
 for i in range(1, n+1):
     go2party(i, x)
 print(max(spend))

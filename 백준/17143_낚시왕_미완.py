@@ -17,16 +17,6 @@
                : 이동 후 한칸에 상어 2마리 가능 -> 크기 큰 상어가 나머지 다 잡아먹음
 '''
 
-
-# 시뮬레이션
 R, C, M = map(int, input().split())
-board = [[0] * C for _ in range(R)]
-
-for m in range(M):
-    r, c, s, d, z = map(int, input().split())
-    board[r-1][c-1] = [s, d, z]  # s: 속력, d: 이동방향, z: 크기
-
-
-
-
-
+board = [[] * C for _ in range(R)]
+print(board)
