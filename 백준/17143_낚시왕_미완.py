@@ -17,6 +17,39 @@
                : 이동 후 한칸에 상어 2마리 가능 -> 크기 큰 상어가 나머지 다 잡아먹음
 '''
 
+from heapq import heappop, heappush
+
 R, C, M = map(int, input().split())
-board = [[] * C for _ in range(R)]
-print(board)
+sharks = [[[] for _ in range(C + 1)] for _ in range(R + 1)]
+
+for m in range(M):
+    x, y, s, d, z = map(int, input().split())
+    sharks[x][y] = [s, d, z]
+
+# print(sharks)
+total = 0  # 상어 크기의 합
+person = 0
+while True:
+    person += 1
+    if person > C:
+        break
+
+    if len(sharks) == 0:
+        break
+
+    shark_col = []
+
+        # print(sharks)
+        # 같은 줄에 있는 상어 잡기
+        # 잡을 때, 같은 줄에 있는 상어가 있을 때, 하나면 그거 잡으면 됨
+        # but, 여러개라면 그 중에 row가 작은 것을 택해야함
+        if y == person:
+            heappush(shark_col, (x, z))
+            print(shark_col)
+
+    # 잡을 상어가 있다면,
+    # if len(shark_col) != 0:
+    #     pass
+
+    # 잡을 상어가 없다면, 상어 이동
+
