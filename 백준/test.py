@@ -37,15 +37,19 @@ END
 QUIT
 '''
 
-from heapq import heappush, heappop
+# from heapq import heappush, heappop
+#
+# board = [[[], [2, 2]],[[1, 3], []]]
+# for i in range(2):
+#     for j in range(2):
+#         for k in range(len(board[i][j])):
+#             a = heappop(board[i][j])
+#             print(a)
+#             print('=================')
+#             heappush(board[i][j], 4)
+#             print(board)
+#             print('-------------------')
 
-board = [[[], [2, 2]],[[1, 3], []]]
-for i in range(2):
-    for j in range(2):
-        for k in range(len(board[i][j])):
-            a = heappop(board[i][j])
-            print(a)
-            print('=================')
-            heappush(board[i][j], 4)
-            print(board)
-            print('-------------------')
+
+a = 2 % 6
+print(a)
