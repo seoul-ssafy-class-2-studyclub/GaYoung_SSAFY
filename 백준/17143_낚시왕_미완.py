@@ -96,17 +96,28 @@ while True:
 
     for shark in sharks:
         x, y, s, d, z = shark
-        if d == 1:  # x좌표만 이동
-            x -= s
-            if 1 <= x <= R:
-                if len(board[x][y]) == 0:
-                    board[x][y] = [s, d, z]
-                else:
-                    if
 
-        elif d == 2:
+        # 방법1. 범위 하나하나 분리 -> s가 10이고, R이 4면 여러번 굴러야함
+        if d == 1:  # x좌표만 이동
+            xi = x - s
+            if 1 <= xi <= R:
+                if len(board[xi][y]) == 0:  # board가 비어있으면
+                    board[xi][y] = [z, s, d]
+                else:  # board에 상어가 있으면
+                    if board[xi][y][0] < z:  # 이미 있는 상어가 더 크면
+                        board[xi][y] = [z, s, d]
+            elif x < 1:
+                pass
+            else:  # x > R
+                pass
+
+
+
+
+
+        elif d == 2:  # x축만 이동
             pass
-        elif d == 3:
+        elif d == 3:  # y축만 이동
             pass
-        else:
+        else:  # y축만 이동
             pass
