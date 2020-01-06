@@ -60,12 +60,11 @@
 
 # 방법2. board에 [r, c, s, d, z]넣어서 하나씩 빼면서 확인
 from heapq import heappop, heappush
+from pprint import pprint
 
 R, C, M = map(int, input().split())
-sharks = [list(map(int, input().split())) for _ in range(M)]
-# [[4, 1, 3, 3, 8], [1, 3, 5, 2, 9], [2, 4, 8, 4, 1], [4, 5, 0, 1, 4], [3, 3, 1, 2, 7], [1, 5, 8, 4, 3], [3, 6, 2, 1, 2], [2, 2, 2, 3, 5]]
-# [[4, 1, 3, 3, 8], [1, 3, 5, 2, 9], [2, 4, 8, 4, 1], [3, 3, 1, 2, 7], [1, 5, 8, 4, 3], [3, 6, 2, 1, 2], [2, 2, 2, 3, 5]]
-
+shark = [list(map(int, input().split())) for _ in range(M)]
+print(shark)
 total = 0  # 상어 크기의 합
 person = 0
 while True:
@@ -93,31 +92,89 @@ while True:
 
     # board판에 이동한 상어 넣기
     board = [[[] for _ in range(C + 1)] for _ in range(R + 1)]
-
-    for shark in sharks:
-        x, y, s, d, z = shark
+    eat = []
+    for i in range(len(sharks)):
+        x, y, s, d, z = sharks[i]
 
         # 방법1. 범위 하나하나 분리 -> s가 10이고, R이 4면 여러번 굴러야함
+        # 이때, x가 -1이면 방향 바꾸고, x가 -5이면 방향 유지
         if d == 1:  # x좌표만 이동
-            xi = x - s
-            if 1 <= xi <= R:
-                if len(board[xi][y]) == 0:  # board가 비어있으면
-                    board[xi][y] = [z, s, d]
-                else:  # board에 상어가 있으면
-                    if board[xi][y][0] < z:  # 이미 있는 상어가 더 크면
-                        board[xi][y] = [z, s, d]
-            elif x < 1:
-                pass
-            else:  # x > R
-                pass
-
-
-
-
+            move = s % (2 * R - 2)
+            xx = x - move
+            if xx < 1:  # 칸을 벗어났을 때
+                # 상어위치[3, 5, 2, 1, 2]
+                   # xx = 0 -> 2, -1 -> 3, -2 -> 4, -3 -> 3(원래는 5), -4 -> 2
+                x = 2 - xx
+                if x > R:  # 이때는 방향 유지
+                    x = 2 * R - x
+                else:  # x < R이면 2, 3, 4로 증가하는 부분이므로
+                    d = 2
+            else:
+                x = xx
 
         elif d == 2:  # x축만 이동
-            pass
+            move = s % (2 * R - 2)
+            xx = x + move
+            if xx > R:  # 칸을 벗어났을 때
+                # 상어위치[1, 3, 5, 2, 9]
+                   # xx = 1 -> 2, 2 -> 3, 3 -> 4 /방향유지/
+                   #      4 -> 3(원래는5), 5 -> 2(원래는 6), 6 -> 1(원래는 7) /방향변화/
+                   #      7 -> 2(원래는 8), 8 -> 3(원래는9),,, /방향유지/
+                x = 2 * R - xx
+                if x < 1:  # 이때는 방향 유지
+                    x = 2 - x
+                else:  # x < R이면 2, 3, 4로 증가하는 부분이므로
+                    d = 1
+            else:
+                x = xx
+
         elif d == 3:  # y축만 이동
-            pass
+            move = s % (2 * C - 2)
+            yy = y + move
+            if yy > C:  # 칸을 벗어났을 때
+                y = 2 * C - yy
+                if y < 1:  # 이때는 방향 유지
+                    y = 2 - y
+                else:  # x < R이면 2, 3, 4로 증가하는 부분이므로
+                    d = 4
+            else:
+                y = yy
+
         else:  # y축만 이동
-            pass
+            move = s % (2 * C - 2)
+            yy = y - move
+            if yy < 1:
+                y = 2 - yy
+                if y > C:
+                    y = 2 * C - y
+                else:
+                    d = 3
+            else:
+                y = yy
+
+        sharks[i] = (x, y, s, d, z)
+
+        if not board[x][y]:  # 비어있으면
+            board[x][y].append([s, d, z, i])
+        else:  # 채워져있으면
+            if z > board[x][y][2]:  # 새로온 애가 기존애보다 크면
+                eat.append(board[x][y][3])
+                board[x][y] = [s, d, z, i]
+            else: # 새로온 애가 기존애보다 작으면
+                eat.append(i)  # 몇번째인지 확인
+
+
+    # 상어 삭제
+    for e in range(len(eat)):
+        sharks.pop(eat[e])
+
+
+    print('person')
+    print(person)
+    print('board')
+    pprint(board)
+    print('sharks')
+    pprint(sharks)
+    print(total)
+    print('------------------------------------------------------------------------------')
+
