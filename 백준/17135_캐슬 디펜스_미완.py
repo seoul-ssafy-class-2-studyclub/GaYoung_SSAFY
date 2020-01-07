@@ -11,6 +11,7 @@ def dis(a, b, c, d):
     return abs(a - c) + abs(b - d)
 
 def removeenemy():
+    pass
 
 
 N, M, D = map(int, input().split())
