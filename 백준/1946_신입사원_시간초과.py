@@ -18,6 +18,4 @@ for t in range(int(input())):
     for v in visit:
         if v == 0:
             cnt += 1
-    print(visit)
     print(cnt)
-    print('-----------------------------------------')
