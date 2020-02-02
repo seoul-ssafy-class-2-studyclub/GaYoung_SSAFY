@@ -22,7 +22,7 @@ import itertools
 def turn(r, c, s):
     dis = 2 * s + c - r  # 5
 
-
+    return board
 
 
 
@@ -43,7 +43,6 @@ for result in results:
     row_sum = 0
     for r, c, s in result:
         turn(r, c, s)
-
 
 
 
