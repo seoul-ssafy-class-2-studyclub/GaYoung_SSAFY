@@ -19,18 +19,6 @@
 
 import itertools
 
-def turn(r, c, s):
-    dis = 2 * s + c - r  # 5
-
-    return board
-
-
-
-
-
-
-
-
 N, M, K = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 do_ls = [list(map(int, input().split())) for _ in range(K)]
@@ -40,14 +28,28 @@ results = list(itertools.permutations(do_ls, K))
 
 mymin = 9999999999999999999
 for result in results:
-    row_sum = 0
-    for r, c, s in result:
-        turn(r, c, s)
+    board1 = [row[:] for row in board]
+    for res in result:
+        r, c, s = res
+        board2 = [row[:] for row in board1]
+        r, c = r - 1, c - 1
+        for k in range(s):
+            # 위
+            for i in range(r - k, r + k):
+                board1[r - k][i + 1] = board2[][i + 1]
+            # 아래
+            for i in range():
+                bd[k + 1][n] = board[k][n]
+            # 오른쪽
+            for i in range(n, mm - n):
+                bd[nn - n][k + 1] = board[nn - n][k]
+            # 왼쪽
+            for i in range(mm - n, n, -1):
+                bd[n][k - 1] = board[n][k]
 
 
 
 
-    if mymin > row_sum:
-        mymin = row_sum
+
 
 print(mymin)
