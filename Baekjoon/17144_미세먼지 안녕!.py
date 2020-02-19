@@ -4,6 +4,8 @@ def spread():
 
     for i in range(N):
         for j in range(M):
+            if board[i][j] == -1:
+                robot.append((i, j))
             if board[i][j] > 0:
                 temp = board[i][j] // 5
                 for a, b in near:
@@ -22,11 +24,20 @@ def spread():
 
 
 def rotate():
+    pass
+
+
+
+
+
 
 
 N, M, T = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
 
+robot = []  # [(2, 0), (3, 0)]
 for t in range(T):
     spread()
-    rotate()
+    # rotate()
+
+print(robot)
