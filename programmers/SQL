@@ -1,0 +1,7 @@
+-- 가장 보호소에 가장 보호소에 먼저 들어온 동물은 Jack입니다.
+-- 맨 위에 하나 행만 꺼내기
+-- LIMIT 사용
+SELECT NAME FROM ANIMAL_INS ORDER BY DATETIME ASC LIMIT 1;
+-- BETWEEN 사용
+
+-- sub query 사용
