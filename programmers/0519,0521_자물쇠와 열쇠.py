@@ -33,9 +33,9 @@ for i in range(n):
 pprint.pprint(board)
 
 # lock의 범위 : start = m-1, end = x + n
-start = m-1
-end = start+n
-for i in range(m):
-    for j in range(m):
-        board[start]
+# start = m-1
+# end = start+n
+# for i in range(m):
+#     for j in range(m):
+#         board[start]
 
