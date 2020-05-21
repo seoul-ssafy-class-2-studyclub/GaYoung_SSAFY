@@ -1,13 +1,8 @@
-# def solution(p):
-#     answer = ''
-#     return answer
 
-
-
-p = '(())()'
+# p = '(())()'
 # p = '(()))('
 # p = ')('
-# p = '()))((()'
+p = '()))((()'
 
 def balance(p):
     cnt = 0
@@ -37,4 +32,47 @@ def correct(p):
             return False
     if r == l:
         return True
+    else:
+        return False
 
+def makeuv(p):
+    u = ''
+    v = ''
+    for i in range(len(p)):
+        if balance(p[:i + 1]):
+            u = p[:i + 1]
+            v = p[i + 1:]
+            break
+    return u,v
+
+def again(p):
+    # 1번
+    if p == '':
+        return ''
+
+    # 2번, 3번
+    res = ''
+    u, v = makeuv(p)
+    if correct(u):
+        u += again(v)  # 3-1번 진행 후 반환필요
+        return u
+
+    else:  # 4번
+        res += '(' + again(v) + ')'  # 4-1, 4-2, 4-3
+        u_remove = u[1:-1]
+        for k in range(len(u_remove)):
+            if u_remove[k] == '(':
+                res += ')'
+            else:
+                res += '('
+    return res
+#
+def solution(p):
+    ans = ''
+    if correct(p):
+        return p
+    else:
+        ans += again(p)  # 재귀함수
+    return ans
+
+print(solution(p))
