@@ -6,23 +6,23 @@ from collections import deque
 
 # def bfs():
 
-# N = 5
-# road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
-# K = 3
+N = 5
+road = [[1, 2, 1], [2, 3, 3], [5, 2, 2], [1, 4, 2], [5, 3, 1], [5, 4, 2]]
+K = 3
 
-N = 6
-road = [[1,2,1],[1,3,2],[2,3,2],[3,4,3],[3,5,2],[3,5,3],[5,6,1]]
-K = 4
+
+# N = 6
+# road = [[1,2,1],[1,3,2],[2,3,2],[3,4,3],[3,5,2],[3,5,3],[5,6,1]]
+# K = 4
 
 def check(maps, K, distance):
-
     first = 1
     queue = deque([first])
     distance[first] = 0  # 처음 출발한 도시의 거리는 0
 
     while queue:
         x = queue.popleft()
-        for y in range(1,len(maps)):
+        for y in range(1, len(maps)):
             if maps[x][y] != 0:
                 if distance[y] > distance[x] + maps[x][y] and distance[x] + maps[x][y] <= K:
                     distance[y] = distance[x] + maps[x][y]
@@ -35,6 +35,7 @@ def check(maps, K, distance):
 
     return cnt
 
+
 '''
 [[0, 0, 0, 0, 0, 0],
  [0, 0, 1, 0, 2, 0],
@@ -45,8 +46,9 @@ def check(maps, K, distance):
 이런 형태를 만들고 싶다
 '''
 
+
 def makemap(N, road, K):
-    maps = [[0 for _ in range(N+1)] for _ in range(N+1)]
+    maps = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
     # print(maps)
     '''
     [[0, 0, 0, 0, 0, 0],
@@ -74,5 +76,6 @@ def makemap(N, road, K):
     distance = [inf for _ in range(N + 1)]
 
     return check(maps, K, distance)
+
 
 print(makemap(N, road, K))
