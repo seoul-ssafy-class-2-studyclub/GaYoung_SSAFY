@@ -5,10 +5,10 @@ from collections import deque
 #     return answer
 
 # def bfs():
-
-N = 5
-road = [[1, 2, 1], [2, 3, 3], [5, 2, 2], [1, 4, 2], [5, 3, 1], [5, 4, 2]]
-K = 3
+#
+# N = 5
+# road = [[1, 2, 1], [2, 3, 3], [5, 2, 2], [1, 4, 2], [5, 3, 1], [5, 4, 2]]
+# K = 3
 
 
 # N = 6
@@ -78,4 +78,4 @@ def makemap(N, road, K):
     return check(maps, K, distance)
 
 
-print(makemap(N, road, K))
+# print(makemap(N, road, K))
