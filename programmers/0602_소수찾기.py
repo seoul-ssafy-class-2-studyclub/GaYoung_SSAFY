@@ -1,17 +1,13 @@
 import itertools
 
 def check(number):
-    cnt = 0
-    if number % 2 == 0:
-        for i in range(1, (number+1)):
+    if number <= 1:
+        return False
+    else:
+        for i in range(2, number // 2 + 1):
             if number % i == 0:
-                cnt += 1
-        # print(cnt)
-        if cnt == 2:
-            return True
-    return False
-
-# print(check(1))
+                return False
+        return True
 
 
 def solution(numbers):
