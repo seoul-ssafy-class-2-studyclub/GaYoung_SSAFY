@@ -21,22 +21,22 @@ def solution(tickets):
     stack = ["ICN"]
     path = []
     while len(stack) > 0:
-        print('stack')
-        print(stack)
-        print('path')
-        print(path)
+        # print('stack')
+        # print(stack)
+        # print('path')
+        # print(path)
 
         top = stack[-1]
         if top not in routes or len(routes[top]) == 0:
             path.append(stack.pop())
         else:
             stack.append(routes[top][-1])
-            print('routes[top][-1]')
-            print(routes[top][-1])
+            # print('routes[top][-1]')
+            # print(routes[top][-1])
             routes[top] = routes[top][:-1]
-            print('routes[top]')
-            print(routes[top])
-            print('----------------------------------')
+            # print('routes[top]')
+            # print(routes[top])
+            # print('----------------------------------')
 
     return path[::-1]
 print('--------------------------------------------------')

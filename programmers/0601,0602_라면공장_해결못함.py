@@ -20,23 +20,30 @@ while stock > 0:
     print(stock)
     print('day')
     print(day)
+    print('-1--------------------------------------------')
 
     for i in range(len(dates)):
         if day >= dates[i]:
             ls.append(supplies[i])
+            print('ls')
             print(ls)
+            print('-2--------------------------------------------')
 
-        if day + stock < k:
+        elif day + stock < k:
             plus = dates[i] - day
+            print('plus')
             print(plus)
+            print('-3--------------------------------------------')
+            
             if plus < stock:
                 day += plus
                 stock -= plus
 
-                print('stock')
-                print(stock)
-                print('day')
-                print(day)
+            print('stock')
+            print(stock)
+            print('day')
+            print(day)
+            print('--cycle-------------------------------------------')
 
 
 
