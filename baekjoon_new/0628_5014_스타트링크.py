@@ -1,15 +1,31 @@
+import collections
+
 F, S, G, U, D = map(int, input().split())
-visit = [False for _ in range(F+1)]
-q = [S]
-visit[S] = 1
-cnt = 0
 
-while q:
-    x = q.pop(0)
-    if x == G:
-        print(cnt)
+def bfs():
+    if S > G and D == 0:
+        return "use the stairs"
 
-    if x + U < F:
-        pass
+    elif S < G and U == 0:
+        return "use the stairs"
 
-    if x - D >= 0:
+    q = collections.deque([(S, 0)])
+    visit = [0 for _ in range(F + 1)]
+    visit[S] = 1
+
+    while q:
+        x, cnt = q.popleft()
+        if x == G:
+            return cnt
+
+        if x + U <= F and not visit[x + U]:
+            q.append((x + U, cnt + 1))
+            visit[x + U] = 1
+
+        if x - D >= 1 and not visit[x - D]:
+            q.append((x - D, cnt + 1))
+            visit[x - D] = 1
+
+    return "use the stairs"
+
+print(bfs())
