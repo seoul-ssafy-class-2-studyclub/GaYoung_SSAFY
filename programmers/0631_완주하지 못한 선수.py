@@ -1,6 +1,3 @@
-participant = ['leo', 'kiki', 'eden']
-completion = ['eden', 'kiki']
-
 # 1. hash사용
 # hash는 dictionary처럼쓰는데, 실행할때마다 key값에 새로운 숫자를 제공
 # ex. {1543287362802119979: 'leo', -599470287568687192: 'kiki', -5395674906811354268: 'eden'}
@@ -52,5 +49,3 @@ def use_zip(participant, completion):
             return p
 
     return participant[-1]
-
-print(use_zip(participant, completion))
