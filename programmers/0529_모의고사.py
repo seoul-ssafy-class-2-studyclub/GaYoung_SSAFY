@@ -12,17 +12,15 @@ def solution(answers):
         if answers[i] == third[i % len(third)]:
             correct[2] += 1
 
+        print(correct)
+
     ans = []
     mymax = max(correct)
     for c in range(len(correct)):
         if correct[c] == mymax:
             ans.append(c + 1)
 
-    # print(ans)
-
     return ans
 
-
-# answers = [1,2,3,4,5]
 answers = [1,3,2,4,2]
-
+print(solution(answers))
