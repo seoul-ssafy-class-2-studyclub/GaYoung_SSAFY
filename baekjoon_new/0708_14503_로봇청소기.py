@@ -1,3 +1,5 @@
+from collections import deque
+
 N, M = map(int, input().split())
 r, c, d = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
@@ -13,3 +15,10 @@ board = [list(map(int, input().split())) for _ in range(N)]
 near = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 cnt = 0
 
+q = deque([r, c, dir])
+while q:
+    # 현재위치 청소
+    x, y, dir = q.popleft()
+    if board[x][y] == 0:
+        board[x][y] = 2
+        cnt += 1

@@ -5,6 +5,8 @@ def solution(strings, n):
 
     print(strings)
     strings = sorted(strings)
+    print('sort')
+    print(strings)
 
     answer = []
     for i in strings:

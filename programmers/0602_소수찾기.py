@@ -34,7 +34,7 @@ def solution(numbers):
 
     return ans
 
-numbers = '17'
+numbers = '10'
 # numbers = '011'
 
 print(solution(numbers))
