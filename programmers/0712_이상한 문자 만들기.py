@@ -4,11 +4,11 @@ def solution(s):
     answer = []
     for i in ls:
         ans = ''
-        for j in range(len(i)):
+        for j in range(1, len(i)+1):
             if j % 2 != 0:
                 ans += i[j].upper()
             else:
                 ans += i[j].lower()
         answer.append(ans)
 
-    return ''.join(answer)
+    return ''.join(answer)[:-1]

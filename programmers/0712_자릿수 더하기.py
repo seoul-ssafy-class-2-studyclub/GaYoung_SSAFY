@@ -1,5 +1,6 @@
 N = 123
 
+
 def solution(n):
     numbers = list(str(n))
     ans = 0
@@ -7,3 +8,4 @@ def solution(n):
         ans += int(i)
 
     return ans
+
