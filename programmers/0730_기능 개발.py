@@ -4,7 +4,7 @@ def solution(progresses, speeds):
     while progresses:
         for i in range(len(progresses)):
             progresses[i] += speeds[i]
-        # print(progresses)
+        print(progresses)
 
         cnt = 0
         while progresses and progresses[0] >= 100:
@@ -15,8 +15,9 @@ def solution(progresses, speeds):
         if cnt >= 1:
             answer.append(cnt)
 
-    # print(answer)
+    print(answer)
     return answer
 
 progresses = [93,30,55]
 speeds = [1,30,5]
+print(solution(progresses,speeds))
