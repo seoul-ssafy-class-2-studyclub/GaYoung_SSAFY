@@ -18,7 +18,6 @@ bd = [
 ]
 
 from collections import deque
-import pprint
 
 queue = deque()
 N = len(bd)
