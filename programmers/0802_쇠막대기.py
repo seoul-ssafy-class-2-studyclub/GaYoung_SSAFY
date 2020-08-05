@@ -42,9 +42,9 @@ for i in range(len(arrangement)):
             answer += 1
             # check = []
 
-        print(answer)
-        # print(check)
-        print('--------------')
+        # print(answer)
+        # # print(check)
+        # print('--------------')
 
 
 print(answer)

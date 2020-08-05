@@ -40,8 +40,7 @@ while q:
         cnt += 1
 
     xi, yi = x+check[d][0], y+check[d][1]  # 왼쪽으로 이동했을 때
-    print(xi, yi)
-    print(board)
+    q.append(())
     break
     # if board[xi][yi] == 0:
 
