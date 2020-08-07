@@ -11,6 +11,7 @@ def solution(skill, skill_trees):
         elif len(res) == 0:
             cnt += 1
         # 'BC'
+        # 'CBD', 'CB' , 'BC'
         elif 0 < len(res) <= len(skill):
             temp = 0
             for r in range(len(res)):
@@ -27,4 +28,5 @@ def solution(skill, skill_trees):
 
 skill = 'CBD'
 skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]
+['BCD', 'CBD', 'BD']
 
