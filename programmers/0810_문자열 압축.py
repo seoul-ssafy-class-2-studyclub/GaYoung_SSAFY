@@ -29,6 +29,8 @@ for i in range(1, len(s)):  # for i in range(1, len(s)):,
     for j in range(i, len(s), i):
         ss = s[j:j+i]
 '''
+
+
 def solution(s):
     ans = 999999999999999999999999999999
 

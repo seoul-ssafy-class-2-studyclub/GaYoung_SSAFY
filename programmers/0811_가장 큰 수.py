@@ -29,8 +29,12 @@ def solution(numbers):
     return answer
 
 
-numbers = [3, 30, 31, 33]
-# numbers = [0, 0, 0, 0]
+numbers = [3, 30, 31, 0]
+
+# (3, 3333333333), (30, 303030303030), (31, 313131313131), (0, 00000000000000)
+# 3, 31, 30 -> 331300
+
+numbers = [0, 0, 0, 0] # => 0000 -> 0
 print(solution(numbers))
 
 '''

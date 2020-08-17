@@ -9,7 +9,6 @@
 '''
 보석을 다 안가지고 있으면 end를 올려주고
 보석을 다 가지고 있으면 start를 올려준다고 생각하면 돼
-
 '''
 gems = ["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]
 # gems = ["AA", "AB", "AC", "AA", "AC"]
