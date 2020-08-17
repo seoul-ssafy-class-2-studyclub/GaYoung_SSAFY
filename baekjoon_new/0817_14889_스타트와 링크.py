@@ -48,8 +48,6 @@ for star in start:
             link_sum += board[link[i]][link[j]] + board[link[j]][link[i]]
 
             diff = abs(start_sum - link_sum)
-            print('diff')
-            print(diff)
 
     if mymin > diff:
         mymin = diff
