@@ -39,6 +39,7 @@ while total:
 
                 if len(ls) != 1:
                     total.append(ls)
+                    print(total)
                 if len(ls_num) != 1:
                     total_num.append(ls_num)
 
