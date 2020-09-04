@@ -6,7 +6,6 @@ relation = [["100","ryan","music","2"],
             ["600","apeach","music","2"]]
 
 from itertools import combinations
-from copy import deepcopy
 
 def solution(relation):
     def unique(row, co):
@@ -79,8 +78,7 @@ def solution(relation):
     visit = [0] * len(use)
     for i in range(len(use)):
         for j in range(i + 1, len(use)):
-            # print(use_copy[i], use_copy[j])
-            if set(use[i]).issubset(set(use[j])):
+            if set(use[i]).issubset(set(use[j])):  # if use[i] == use[i] & use[j]:
                 visit[j] = 1
 
     cnt = 0
@@ -90,10 +88,5 @@ def solution(relation):
 
     return cnt
 
-use = [(0,), (0, 1), (0, 2), (0, 3), (1, 2), (0, 1, 2), (0, 1, 3), (0, 2, 3), (1, 2, 3), (0, 1, 2, 3)]
-use_copy = deepcopy(use)
 
-for i in range(len(use)):
-    for j in range(i + 1, len(use)):
-        if use[i] == use[i] & use[j]:
-            use.remove(use[j])
+
