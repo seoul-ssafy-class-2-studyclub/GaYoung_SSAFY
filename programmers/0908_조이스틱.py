@@ -1,8 +1,3 @@
-# name = 'JEROEN'
-        # 9 4 9 12 4 13
-name = 'JAN'
-# name = 'ZZAAAAAZ'
-
 def solution(name):
     cnt = 0
     move = 0
@@ -50,5 +45,3 @@ def solution(name):
 
 
     return cnt
-
-print(solution(name))
