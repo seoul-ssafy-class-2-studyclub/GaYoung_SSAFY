@@ -10,21 +10,23 @@ for t in range(int(input())):
         for i in range(col, col + row):
             board[col][i] = value
             value += 1
+        print(board)
 
         for i in range(col + 1, col + row):
             board[i][row + col - 1] = value
             value += 1
-        
+        print(board)
         for i in range(row + col - 2, col - 1, -1):
             board[row + col - 1][i] = value
             value += 1
-        
+        print(board)
         for i in range(row + col - 2, col, -1):
             board[i][col] = value
             value += 1
-        
+        print(board)
         row -= 2
         col += 1
+        # print(board)
 
     print('#{}'.format(t + 1))
     for b in board:
