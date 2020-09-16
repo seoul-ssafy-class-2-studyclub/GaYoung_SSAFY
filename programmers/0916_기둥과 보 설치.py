@@ -24,7 +24,7 @@ def install(x, y, a, total):
 def solution(n, build_frame):
     # 원래 total = []하려했는데, pop할때 특정짓기 힘들어서 {}로 수정
     total = {}
-    # 8방향으로 하는 이유 : install함수에서 x-1, x+1, y-1, y+1과 같이 비교해야하는 부분들이 있기 때문에
+    # 4방향보다 많은 이유 : install함수에서 x-1, x+1, y-1, y+1과 같이 비교해야하는 부분들이 있기 때문에
     near = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, 1), (0, 0)]
     for x, y, a, b in build_frame:
         if b == 1:  # 설치
@@ -32,7 +32,6 @@ def solution(n, build_frame):
                 total[x, y, a] = 1
 
         else:  # 삭제 -> install의 결과가 False가 되어야함
-            # if (x, y, a) in total:  # 이걸 확인해야하는 것이 아니라 xi, yi값이 total에 있는지 확인해야한다.
             total.pop((x, y, a))
 
             for dx, dy in near:
@@ -47,10 +46,8 @@ def solution(n, build_frame):
                         total[x, y, a] = 1  # 이때, total[xi, yi, a] = 1이 아니다.
                         break
 
-    # print(total)
     answer = list(map(list, total.keys()))
     answer = sorted(answer)  # [[0, 0, 0], [0, 1, 1], [1, 1, 1], [2, 1, 1], [3, 1, 1], [4, 0, 0]]
-    # print(answer)
 
     return answer
 
