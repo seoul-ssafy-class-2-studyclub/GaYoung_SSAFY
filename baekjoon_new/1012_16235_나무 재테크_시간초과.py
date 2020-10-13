@@ -20,8 +20,8 @@ for m in range(M):
     x, y, age = map(int, input().split())
     tree[x - 1][y - 1].append(age)
 
-dead = deque()  # 여름때 양분으로 바뀌면 새로 죽은 나무 확인해야함
-                # -> spring에 넣지 않고 summer에서 빼가면서 진행
+# dead = deque()  # 여름때 양분으로 바뀌면 새로 죽은 나무 확인해야함
+                  # -> spring에서 죽으면 바로 양분으로 만들어버리기
 
 # answer = 살아남은 나무의 수 -> spring에서 나무 죽음. summer에서 dead 초기화 fall에서 나무 생성
 # cnt를 spring에서 더할게아니라 처음 있던 나무 수를 가지고 4계절 돌면서 + - 하는게 best일듯
@@ -37,26 +37,18 @@ def spring():
     global cnt
     for i in range(N):
         for j in range(N):
-            for k in range(len(tree[i][j])):  # 나무 여러개 -> 어린나무부터 먹음
-                x = tree[i][j].popleft()  # 어린나무의 나이
-                if x <= energy[i][j]:
-                    energy[i][j] -= x  # 양분 먹었으면 그만큼 줄어들어야함
-                    tree[i][j].append(x+1)
-                else:
-                    dead.append([i, j, x])  # 즉시 죽음
-                    # 여름에서 특정위치에 양분으로 추가되므로 위치+값을 dead에 넣어야함.
-                    cnt -= 1
-
-
-'''
-여름에는 봄에 죽은 나무가 양분으로 변하게 된다.
-각각의 죽은 나무마다 나이를 2로 나눈 값이 나무가 있던 칸에 양분으로 추가된다. 소수점 아래는 버린다.
-'''
-def summer():
-    if dead:
-        for i in range(len(dead)):
-            x, y, t = dead.popleft()
-            energy[x][y] += t // 2
+            x = tree[i][j].popleft()  # 어린나무의 나이
+            if x <= energy[i][j]:
+                energy[i][j] -= x  # 양분 먹었으면 그만큼 줄어들어야함
+                tree[i][j].append(x+1)
+            else:
+                '''
+                여름에는 봄에 죽은 나무가 양분으로 변하게 된다.
+                각각의 죽은 나무마다 나이를 2로 나눈 값이 나무가 있던 칸에 양분으로 추가된다. 소수점 아래는 버린다.
+                '''
+                energy[i][j] += x // 2  # 즉시 죽음
+                # 여름에서 특정위치에 양분으로 추가되므로 위치+값을 dead에 넣어야함.
+                cnt -= 1
 
 '''
 가을에는 나무가 번식한다.
@@ -73,7 +65,7 @@ def fall():
                     for a, b in near:
                         xi, yi = i + a, j + b
                         if 0 <= xi < N and 0 <= yi < N:
-                            tree[xi][yi].append(1)
+                            tree[xi][yi].appendleft(1)  # 작은 값은 앞으로 넣어야함 -> appendleft
                             cnt += 1
 
 '''
@@ -87,7 +79,6 @@ def winter():
 
 for k in range(K):
     spring()
-    summer()
     fall()
     winter()
 print(cnt)
