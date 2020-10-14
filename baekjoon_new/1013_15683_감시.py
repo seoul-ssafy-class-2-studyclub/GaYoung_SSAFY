@@ -25,6 +25,7 @@ for i in range(N):
             cctv.append([i, j, board[i][j]])
             cctv_cnt += 1
 
+result = 9999999999999999999999999999999999
 
 def check(bd, x, y, go):  # go: 2번camera의 2개방향중 하나 ([(0, 1), (0, -1)])
     for a, b in go:

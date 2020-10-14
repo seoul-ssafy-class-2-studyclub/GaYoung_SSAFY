@@ -66,3 +66,4 @@ def solution(number, k):
 
     # print(stack)
     return ''.join(stack)
+
