@@ -6,7 +6,7 @@ def solution(numbers, target):
             ans.append(l + num)
             ans.append(l - num)
         ls = ans
-    # print(ls)
+    print(ls)
 
     cnt = 0
     for i in ls:
