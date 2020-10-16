@@ -10,24 +10,22 @@ def solution(genres, plays):
             check[genres[i]].append([plays[i], i])
 
     music = sorted(music.items(), key=lambda x:x[1], reverse=True)
-    # print(music)
+
     answer = []
-    for mu in music:
-        m = mu[0]
-        if len(check[m]) == 1:
-            answer.append(check[m][1])
-        elif len(check[m]) >= 2:
-            check[m] = sorted(check[m], key=lambda x: x[0], reverse=True)
-            # check[m] = sorted(check[m], key=lambda x: x[0], reverse=True)
-            print(check[m])
+    for name, count in music:
+        if len(check[name]) == 1:
+            answer.append(check[name][0][1])
+        elif len(check[name]) >= 2:
+            check[name] = sorted(check[name], key=lambda x: x[0], reverse=True)
+
             for i in range(2):
-                answer.append(check[m][i][1])
+                answer.append(check[name][i][1])
     # print(answer)
     return answer
 
 # genres = ['classic', 'pop', 'classic', 'classic', 'pop']
 # plays = [500, 600, 800, 800, 2500]
 
-genres = ['classic', 'pop', 'classic', 'classic', 'pop']
-plays = [500, 600, 501, 800, 900]
+genres = ['classic', 'pop', 'classic', 'classic', 'pop', 'jaze']
+plays = [500, 600, 501, 800, 900, 100]  # [3, 2, 4, 1]
 print(solution(genres, plays))
