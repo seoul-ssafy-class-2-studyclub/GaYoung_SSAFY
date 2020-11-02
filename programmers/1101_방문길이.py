@@ -1,25 +1,22 @@
 def solution(dirs):
-    answer = 0
-    return answer
+    near = {'U':[0, 1], 'R':[1, 0], 'D':[0, -1], 'L':[-1, 0]}
+    check = set()
+    start_x, start_y = (0, 0)
+
+    for i in dirs:  # 출발지점과 도착지점이 반대여도 같은 간선
+        x, y = start_x + near[i][0], start_y + near[i][1]
+        if -5 <= x <= 5 and -5 <= y <= 5:
+            check.add((start_x, start_y, x, y))
+            check.add((x, y, start_x, start_y))
+            start_x, start_y = x, y
+
+                # print(start)
+                # print('-------------------------------------')
+
+    # print(len(check))
+    return len(check) // 2
+    
 
 dirs = 'ULURRDLLU'
 # dirs = 'LULLLLLLU'
 
-near = {'U':[0, 1], 'R':[1, 0], 'D':[0, -1], 'L':[-1, 0]}
-check = []
-start = [0, 0]
-
-for i in dirs:
-    for key, val in near.items():
-        if i == key:
-            print(i)
-            x, y = start[0] + val[0], start[1] + val[1]
-            if -5 <= x <= 5 and -5 <= y <= 5:
-                if [start[0], start[0], x, y] not in check:
-                    check.append([start[0], start[0], x, y])
-                    start = [x, y]
-                else:
-                    start = [x, y]
-            print(start)
-            print('-------------------------------------')
-print(check)
